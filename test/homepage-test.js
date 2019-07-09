@@ -16,15 +16,12 @@ module.exports = {
 
     navbarHeader.expect.element('@versionDropdown').to.be.enabled;
     navbarHeader.expect.element('@versionDropdownOption:first-child').text.to.equal('1.1.13')
-      /*
-    navbarHeader.moveToElement('#index-container > div.download > div > div > div.col-lg-7.col-md-7.col-sm-4.download > a.btn.btn-primary.btn-lg.btn-github', 5, 5, function() {
-      navbarHeader.waitForElementVisible('#index-container > div.download > div > div > div.col-lg-7.col-md-7.col-sm-4.download > a.btn.btn-primary.btn-lg.btn-github', 500, function() {
-        navbarHeader.click('#index-container > div.download > div > div > div.col-lg-7.col-md-7.col-sm-4.download > a.btn.btn-primary.btn-lg.btn-github');
-      }, 'Clicked git hub icon');
-      */
+      
+    // tried to add command to page object fails with  Cannot read property 'element' of undefined
+    //this.homepage.moveToElementclickElement('@gitHubButton', function() {
     linkSection.moveToElement('@gitHubButton', 5, 5, function() {
       linkSection.waitForElementVisible('@gitHubButton', 500, function() {
-        linkSection.click('@gitHubButton');
+       linkSection.click('@gitHubButton');
       }, 'Clicked git hub icon');
       client.windowHandles(function(result) {
         this.verify.equal(result.value.length, 2, 'Found 2 browser windows')

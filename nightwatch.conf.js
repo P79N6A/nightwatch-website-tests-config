@@ -11,13 +11,15 @@ module.exports = {
     port: 4444,
     server_path: 'node_modules/.bin/geckodriver',
     cli_args: [
-      '--log', 'debug',
+      '--log', 'trace',
       // Can be used for a faster startup of Firefox, which needs to be started using: firefox -marionette
       // '--connect-existing',
-      //'--marionette-port', '2828'
+      '--marionette-port', '2828'
     ]
   },
 
+  // to add profile to firefox
+  // "args": [ "-profile", "testProfile_encoded.tar.bz2", "-headless"]
   test_settings: {
     default: {
       desiredCapabilities : {
@@ -26,7 +28,8 @@ module.exports = {
         alwaysMatch: {
           acceptInsecureCerts: true,
           "moz:firefoxOptions": {
-            "binary": "/opt/firefox-52/firefox"
+            "args": ["-headless"],
+            "binary": "/opt/firefox-60/firefox"
           } 
         }
       },
@@ -56,10 +59,28 @@ module.exports = {
       desiredCapabilities : {
         browserName : 'chrome',
         chromeOptions: {
-          w3c: false
+          "w3c": false
         }
       },
-
+      webdriver: {
+        port: 9515,
+        server_path: chromedriver.path
+      }
+    },
+    chrome_headless: {
+      desiredCapabilities : {
+        browserName : 'chrome',
+        chromeOptions: {
+           "args": [
+             "disable-web-security", 
+             "headless", 
+             "no-sandbox", 
+             "disable-gpu", 
+             "ignore-certificate-errors", 
+             "remote-debugging-port=9233"],
+          "w3c": false
+        }
+      },
       webdriver: {
         port: 9515,
         server_path: chromedriver.path

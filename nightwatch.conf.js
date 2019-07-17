@@ -28,7 +28,6 @@ module.exports = {
         alwaysMatch: {
           acceptInsecureCerts: true,
           "moz:firefoxOptions": {
-            "args": ["-headless"],
             "binary": "/opt/firefox-60/firefox"
           } 
         }
@@ -42,6 +41,19 @@ module.exports = {
       }
     },
 
+    firefox_headless: {
+      desiredCapabilities : {
+        browserName : 'firefox',
+        javascriptEnabled : true,
+        alwaysMatch: {
+          acceptInsecureCerts: true,
+          "moz:firefoxOptions": {
+            "args": ["-headless"],
+            "binary": "/opt/firefox-60/firefox"
+          } 
+        }
+      }
+    },
     safari: {
       desiredCapabilities : {
         browserName : 'safari',
